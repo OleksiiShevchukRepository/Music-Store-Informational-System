@@ -111,3 +111,21 @@ REFERENCES tblAlbum(Id),
 CONSTRAINT FK_tblDistributorGoods_tblDistributor FOREIGN KEY (DistributorID)
 REFERENCES tblDistributor(Id)
 );
+
+CREATE TABLE tblStorage
+(
+Id INT NOT NULL IDENTITY (1, 1)
+CONSTRAINT PK_tblStorage_ID PRIMARY KEY (Id)
+);
+
+CREATE TABLE tblGoodsInStorage
+(
+Id INT NOT NULL IDENTITY (1, 1),
+DistributorGoodsID INT NOT NULL,
+StorageID INT NOT NULL
+CONSTRAINT PK_tblGoodsInStorage_ID PRIMARY KEY (Id)
+CONSTRAINT FK_tblGoodsInStorage_tblDistributorGoods FOREIGN KEY (DistributorGoodsID)
+REFERENCES tblDistributorGoods(Id),
+CONSTRAINT FK_tblGoodsInStorage_tblStorage FOREIGN KEY (StorageID)
+REFERENCES tblStorage(Id)
+);
