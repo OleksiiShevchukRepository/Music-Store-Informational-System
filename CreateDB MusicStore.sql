@@ -1,4 +1,4 @@
---CREATE DATABASE MusicStore;
+CREATE DATABASE MusicStore;
 
 USE MusicStore;
 
@@ -136,7 +136,9 @@ CREATE TABLE tblGoodsInStorage
 (
 Id INT NOT NULL IDENTITY (1, 1),
 DistributorGoodsID INT NOT NULL,
-StorageID INT NOT NULL
+StorageID INT NOT NULL,
+Amount INT NOT NULL,
+PriseRealisation NUMERIC(19, 4) NOT NULL
 CONSTRAINT PK_tblGoodsInStorage_ID PRIMARY KEY (Id)
 CONSTRAINT FK_tblGoodsInStorage_tblDistributorGoods FOREIGN KEY (DistributorGoodsID)
 REFERENCES tblDistributorGoods(Id),
