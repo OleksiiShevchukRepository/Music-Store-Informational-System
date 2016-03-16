@@ -110,3 +110,18 @@ VALUES (1, 1, 2), (2, 1, 11), (3, 1, 23), --Dark Side Of the Moon
 		(46, 17, 1), (47, 17, 23), (48, 17, 22), --Off the wall
 		(49, 18, 1), (50, 18, 23), (51, 18, 22), --Thriller
 		(52, 19, 2), (53, 19, 23), --Machine Head
+		(54, 20, 2), --Slaves & masters
+		(55, 21, 2), (56, 21, 1), (57, 21, 3), --Making moviews
+		(58, 22, 1), (59, 22, 2), --Nothing like the sun Sting
+		(60, 23, 5), (61, 23, 23), --Bach
+		(62, 24, 5), --Zimmer Film Music
+		(63, 25, 9), (64, 25, 23), --Birnin' Marley
+		(65, 26, 16), (66, 26, 23), --Me against the world 2PAC
+		(67, 27, 16), (68, 27, 23), --The Slim-Shady LP
+		(69, 28, 16), --Relapse Eminem
+		(70, 29, 1), --Oops! I did it again
+		(71, 30, 2), (72, 30, 6), (73, 30, 18), --Silver Side Up
+		(74, 31, 1), (75, 31, 12), (76, 31, 13), --Discovery
+		(77, 32, 18), (78, 32, 2), (79, 32, 6), --Believe
+		(80, 33, 18), (81, 33, 2), (82, 33, 6), (83, 33, 11), --As daylight dies
+		(84, 34, 7), (85, 34, 16), (86, 34, 22); --Monkey business
