@@ -100,31 +100,31 @@ Rating INT NULL
 CONSTRAINT PK_tblDistributor_ID PRIMARY KEY (Id)
 );
 
-CREATE TABLE tblDistributorGoods
+CREATE TABLE tblDistributorAlbums
 (
 Id INT NOT NULL IDENTITY (1, 1),
 DistributorId INT NOT NULL,
 AlbumId INT NOT NULL,
 Price DECIMAL(19, 4) NOT NULL
-CONSTRAINT PK_tblDistributorGoods_ID PRIMARY KEY (Id)
-CONSTRAINT FK_tblDistributorGoods_tblAlbum FOREIGN KEY (AlbumId)
+CONSTRAINT PK_tblDistributorAlbums_ID PRIMARY KEY (Id)
+CONSTRAINT FK_tblDistributorAlbums_tblAlbum FOREIGN KEY (AlbumId)
 REFERENCES tblAlbum(Id),
-CONSTRAINT FK_tblDistributorGoods_tblDistributor FOREIGN KEY (DistributorID)
+CONSTRAINT FK_tblDistributorAlbums_tblDistributor FOREIGN KEY (DistributorID)
 REFERENCES tblDistributor(Id)
 );
 
 
-CREATE TABLE tblGoodsInShopStorage
+CREATE TABLE tblAlbumsInShopStorage
 (
 Id INT NOT NULL IDENTITY (1, 1),
-DistributorGoodsID INT NOT NULL,
+DistributorAlbumsID INT NOT NULL,
 MusicShopID INT NOT NULL,
 Amount INT NOT NULL,
 PriseRealisation NUMERIC(19, 4) NOT NULL
-CONSTRAINT PK_tblGoodsInShopStorage_ID PRIMARY KEY (Id)
-CONSTRAINT FK_tblGoodsInShopStorage_tblDistributorGoods FOREIGN KEY (DistributorGoodsID)
-REFERENCES tblDistributorGoods(Id),
-CONSTRAINT FK_tblGoodsInShopStorage_tblMusicShop FOREIGN KEY (MusicShopID)
+CONSTRAINT PK_tblAlbumsInShopStorage_ID PRIMARY KEY (Id)
+CONSTRAINT FK_tblAlbumsInShopStorage_tblDistributorAlbums FOREIGN KEY (DistributorAlbumsID)
+REFERENCES tblDistributorAlbums(Id),
+CONSTRAINT FK_tblAlbumsInShopStorage_tblMusicShop FOREIGN KEY (MusicShopID)
 REFERENCES tblMusicShop(Id)
 );
 GO
