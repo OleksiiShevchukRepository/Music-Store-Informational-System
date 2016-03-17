@@ -1,6 +1,8 @@
 CREATE DATABASE MusicStore;
+GO
 
 USE MusicStore;
+GO
 
 CREATE TABLE tblArtist
 (
@@ -46,10 +48,8 @@ REFERENCES tblGerne(Id)
 CREATE TABLE tblMusicShop
 (
 Id INT NOT NULL IDENTITY (1, 1),
-Name NVARCHAR(50) NOT NULL,
-Address NVARCHAR(50) NOT NULL,
-ShopOwner NVARCHAR(50) NOT NULL,
-Balance DECIMAL(19, 4) NOT NULL
+ProfitTotal DECIMAL(19, 4) NOT NULL,
+ExpenceTotal DECIMAL(19, 4) NOT NULL,
 CONSTRAINT PK_tblMusicShop_ID PRIMARY KEY (Id)
 );
 
@@ -100,18 +100,6 @@ Rating INT NULL
 CONSTRAINT PK_tblDistributor_ID PRIMARY KEY (Id)
 );
 
-CREATE TABLE tblShopDistributor
-(
-Id INT NOT NULL IDENTITY (1, 1),
-DistributorId INT NOT NULL,
-MusicShopId INT NOT NULL
-CONSTRAINT PK_tblShopDistributor_ID PRIMARY KEY (Id)
-CONSTRAINT FK_tblShopDistributor_tblDistributor FOREIGN KEY (DistributorId)
-REFERENCES tblDistributor(Id),
-CONSTRAINT FK_tblShopDistributor_tblMusicStore FOREIGN KEY (MusicShopID)
-REFERENCES tblMusicShop(Id)
-);
-
 CREATE TABLE tblDistributorGoods
 (
 Id INT NOT NULL IDENTITY (1, 1),
@@ -125,23 +113,18 @@ CONSTRAINT FK_tblDistributorGoods_tblDistributor FOREIGN KEY (DistributorID)
 REFERENCES tblDistributor(Id)
 );
 
-CREATE TABLE tblStorage
-(
-Id INT NOT NULL IDENTITY (1, 1),
-Address NVARCHAR(50) NOT NULL
-CONSTRAINT PK_tblStorage_ID PRIMARY KEY (Id)
-);
 
-CREATE TABLE tblGoodsInStorage
+CREATE TABLE tblGoodsInShopStorage
 (
 Id INT NOT NULL IDENTITY (1, 1),
 DistributorGoodsID INT NOT NULL,
-StorageID INT NOT NULL,
+MusicShopID INT NOT NULL,
 Amount INT NOT NULL,
 PriseRealisation NUMERIC(19, 4) NOT NULL
-CONSTRAINT PK_tblGoodsInStorage_ID PRIMARY KEY (Id)
-CONSTRAINT FK_tblGoodsInStorage_tblDistributorGoods FOREIGN KEY (DistributorGoodsID)
+CONSTRAINT PK_tblGoodsInShopStorage_ID PRIMARY KEY (Id)
+CONSTRAINT FK_tblGoodsInShopStorage_tblDistributorGoods FOREIGN KEY (DistributorGoodsID)
 REFERENCES tblDistributorGoods(Id),
-CONSTRAINT FK_tblGoodsInStorage_tblStorage FOREIGN KEY (StorageID)
-REFERENCES tblStorage(Id)
+CONSTRAINT FK_tblGoodsInShopStorage_tblMusicShop FOREIGN KEY (MusicShopID)
+REFERENCES tblMusicShop(Id)
 );
+GO

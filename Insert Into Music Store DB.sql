@@ -125,3 +125,15 @@ VALUES (1, 1, 2), (2, 1, 11), (3, 1, 23), --Dark Side Of the Moon
 		(77, 32, 18), (78, 32, 2), (79, 32, 6), --Believe
 		(80, 33, 18), (81, 33, 2), (82, 33, 6), (83, 33, 11), --As daylight dies
 		(84, 34, 7), (85, 34, 16), (86, 34, 22); --Monkey business
+
+INSERT INTO tblMusicShop (Id, ProfitTotal, ExpenceTotal)
+VALUES (1, 0, 0);
+
+INSERT INTO tblSeller (Id, ShopId, Name, Surname, PassportID)
+VALUES (1, 1, N'Ben', N'Gann', N'KC0293293'),
+		(2, 1, N'Johny', N'Sins', N'KC2165135');
+
+INSERT INTO tblDistributor(Id, Name)
+VALUES (1, N'Relapse'),
+		(2, N'Epic');
+
