@@ -164,4 +164,23 @@ VALUES (1, 1, 1, 10), (2, 1, 2, 10), (3, 1, 3, 10), (4, 1, 4, 10),
 		(33, 2, 22, 15), (34, 2, 23, 15), (35, 2, 24, 15), (36, 2, 25, 15),
 		(37, 2, 26, 15), (38, 2, 27, 15), (39, 2, 28, 15), (40, 2, 29, 15),
 		(41, 2, 30, 15), (42, 2, 31, 15), (43, 2, 32, 15), (44, 2, 33, 15);
-SET IDENTITY_INSERT tblDistributorAlbums OFF;		
+SET IDENTITY_INSERT tblDistributorAlbums OFF;
+
+SET IDENTITY_INSERT tblAlbumsInShopStorage ON
+INSERT INTO tblAlbumsInShopStorage (Id, MusicShopID, AlbumID, Amount, PriceBought, PriceRealisation)
+VALUES (1, 1, 1, 20, 10, 19.99),
+		(2, 1, 2, 10, 10, 14.99),
+		(3, 1, 3, 5, 10, 14.99),
+		(4, 1, 4, 2, 10, 19.99),
+		(5, 1, 6, 2, 10, 14.99),
+		(6, 1, 8, 3, 10, 19.99),
+		(7, 1, 9, 1, 10, 14.99),
+		(8, 1, 10, 2, 10, 14.99),
+		(9, 1, 11, 5, 10, 19.99),
+		(10, 1, 18, 4, 10, 19.99),
+		(11, 1, 22, 3, 15, 19.99),
+		(12, 1, 26, 2, 15, 19.99),
+		(13, 1, 27, 3, 15, 19.99),
+		(14, 1, 29, 1, 15, 14.99),
+		(15, 1, 32, 2, 15, 19.99);
+SET IDENTITY_INSERT tblAlbumsInShopStorage OFF		
