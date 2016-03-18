@@ -117,13 +117,14 @@ REFERENCES tblDistributor(Id)
 CREATE TABLE tblAlbumsInShopStorage
 (
 Id INT NOT NULL IDENTITY (1, 1),
-DistributorAlbumsID INT NOT NULL,
+AlbumID INT NOT NULL,
 MusicShopID INT NOT NULL,
 Amount INT NOT NULL,
-PriseRealisation NUMERIC(19, 4) NOT NULL
+PriceBought INT NOT NULL,
+PriceRealisation NUMERIC(19, 4) NOT NULL
 CONSTRAINT PK_tblAlbumsInShopStorage_ID PRIMARY KEY (Id)
-CONSTRAINT FK_tblAlbumsInShopStorage_tblDistributorAlbums FOREIGN KEY (DistributorAlbumsID)
-REFERENCES tblDistributorAlbums(Id),
+CONSTRAINT FK_tblAlbumsInShopStorage_tblAlbum FOREIGN KEY (AlbumID)
+REFERENCES tblAlbum(Id),
 CONSTRAINT FK_tblAlbumsInShopStorage_tblMusicShop FOREIGN KEY (MusicShopID)
 REFERENCES tblMusicShop(Id)
 );
