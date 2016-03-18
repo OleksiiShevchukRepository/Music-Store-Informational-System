@@ -1,6 +1,7 @@
 USE MusicStore;
 
-INSERT INTO tblGerne (Id, Name)
+SET IDENTITY_INSERT tblGenre ON;
+INSERT INTO tblGenre (Id, Name)
 VALUES (1, N'Pop'),
 		(2, N'Rock'),
 		(3, N'Blues'),
@@ -24,7 +25,9 @@ VALUES (1, N'Pop'),
 		(21, N'Swing'),
 		(22, N'RnB'),
 		(23, N'Cult Classics')
+SET IDENTITY_INSERT tblGenre OFF;
 
+SET IDENTITY_INSERT tblArtist ON;
 INSERT INTO tblArtist (Id, Name)
 VALUES (1, N'Pink Floyd'),
 		(2, N'Dream Theater'),
@@ -53,8 +56,10 @@ VALUES (1, N'Pink Floyd'),
 		(25, N'Disturbed'),
 		(26, N'Killswitch Engage'),
 		(27, N'Black eyed Peas');
+SET IDENTITY_INSERT tblArtist OFF;
 
-INSERT INTO tblAlbum (Id, ArtistId, Name, YearPublication, RatingAllMusicCom)
+SET IDENTITY_INSERT tblAlbum ON;
+INSERT INTO tblAlbum (Id, ArtistId, Name, [Year], RatingAllMusicCom)
 VALUES (1, 1, N'Dark side of the moon', 1973, 10),
 		(2, 1, N'Wish you were here', 1975, 10),
 		(3, 2, N'Images & Words', 1992, 9),
@@ -89,8 +94,10 @@ VALUES (1, 1, N'Dark side of the moon', 1973, 10),
 		(32, 25, N'Believe', 2002, 8),
 		(33, 26, N'As Daylight Dies', 2006, 9),
 		(34, 27, N'Monkey Business', 2005, 5);
+SET IDENTITY_INSERT tblAlbum OFF;
 
-INSERT INTO tblAlbumGerne (Id, AlbumId, GerneID)
+SET IDENTITY_INSERT tblAlbumGenre ON;
+INSERT INTO tblAlbumGenre (Id, AlbumId, GenreID)
 VALUES (1, 1, 2), (2, 1, 11), (3, 1, 23), --Dark Side Of the Moon
 		(4, 2, 2), (5, 2, 11), (6, 2, 23), --Wish you were here
 		(7, 3, 2), (8, 3, 11), (9, 3, 6), --Images & Words
@@ -125,15 +132,36 @@ VALUES (1, 1, 2), (2, 1, 11), (3, 1, 23), --Dark Side Of the Moon
 		(77, 32, 18), (78, 32, 2), (79, 32, 6), --Believe
 		(80, 33, 18), (81, 33, 2), (82, 33, 6), (83, 33, 11), --As daylight dies
 		(84, 34, 7), (85, 34, 16), (86, 34, 22); --Monkey business
+SET IDENTITY_INSERT tblAlbumGenre OFF;
 
+SET IDENTITY_INSERT tblMusicShop ON;
 INSERT INTO tblMusicShop (Id, ProfitTotal, ExpenceTotal)
 VALUES (1, 0, 0);
+SET IDENTITY_INSERT tblMusicShop OFF;
 
+SET IDENTITY_INSERT tblSeller ON;
 INSERT INTO tblSeller (Id, ShopId, Name, Surname, PassportID)
 VALUES (1, 1, N'Ben', N'Gann', N'KC0293293'),
 		(2, 1, N'Johny', N'Sins', N'KC2165135');
+SET IDENTITY_INSERT tblSeller OFF;
 
+SET IDENTITY_INSERT tblDistributor ON;
 INSERT INTO tblDistributor(Id, Name)
 VALUES (1, N'Relapse'),
 		(2, N'Epic');
+SET IDENTITY_INSERT tblDistributor OFF;
 
+SET IDENTITY_INSERT tblDistributorAlbums ON;
+INSERT INTO tblDistributorAlbums (Id, DistributorId, AlbumId, Price)
+VALUES (1, 1, 1, 10), (2, 1, 2, 10), (3, 1, 3, 10), (4, 1, 4, 10),
+		(5, 1, 5, 10), (6, 1, 6, 10), (7, 1, 7, 10), (8, 1, 8, 10),
+		(9, 1, 9, 10), (10, 1, 10, 10), (11, 1, 11, 10), (12, 1, 12, 10),
+		(13, 1, 13, 10), (14, 1, 14, 10), (15, 1, 15, 10), (16, 1, 16, 10),
+		(17, 1, 17, 10), (18, 1, 18, 10), (19, 1, 19, 10), (20, 1, 20, 10),
+		(21, 2, 10, 15), (22, 2, 11, 15), (23, 2, 12, 15), (24, 2, 13, 15),
+		(25, 2, 14, 15), (26, 2, 15, 15), (27, 2, 16, 15), (28, 2, 17, 15),
+		(29, 2, 18, 15), (30, 2, 19, 15), (31, 2, 20, 15), (32, 2, 21, 15),
+		(33, 2, 22, 15), (34, 2, 23, 15), (35, 2, 24, 15), (36, 2, 25, 15),
+		(37, 2, 26, 15), (38, 2, 27, 15), (39, 2, 28, 15), (40, 2, 29, 15),
+		(41, 2, 30, 15), (42, 2, 31, 15), (43, 2, 32, 15), (44, 2, 33, 15);
+SET IDENTITY_INSERT tblDistributorAlbums OFF;		
