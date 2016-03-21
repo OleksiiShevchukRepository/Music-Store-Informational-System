@@ -21,27 +21,43 @@ namespace MusicShop.Repositories
             _connectionString = connectionString;
         }
 
-        public void CreateCheck(int sellerId, decimal totalSum, SqlConnection connection, SqlCommand command)
+        public void CreateCheck(int sellerId, decimal totalSum)
         {
-            command.Connection = connection;
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = spCreateCheck;
-            command.Parameters.AddWithValue("@SellerId", sellerId);
-            command.Parameters.AddWithValue("@TotalSum", totalSum);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
 
-            command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = spCreateCheck;
+                    command.Parameters.AddWithValue("@SellerId", sellerId);
+                    command.Parameters.AddWithValue("@TotalSum", totalSum);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
-        public void AddItemToCheck(int albumId, int amount, decimal price, SqlConnection connection, SqlCommand command)
+        public void AddItemToCheck(int albumId, int amount, decimal price)
         {
-            command.Connection = connection;
-            command.CommandType = CommandType.StoredProcedure;
-            command.CommandText = spCreateSoldItem;
-            command.Parameters.AddWithValue("@AlbumId", albumId);
-            command.Parameters.AddWithValue("@Amount", amount);
-            command.Parameters.AddWithValue("@Price", price);
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
 
-            command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = spCreateSoldItem;
+                    command.Parameters.AddWithValue("@AlbumId", albumId);
+                    command.Parameters.AddWithValue("@Amount", amount);
+                    command.Parameters.AddWithValue("@Price", price);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

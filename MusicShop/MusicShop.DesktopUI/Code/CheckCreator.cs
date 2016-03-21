@@ -8,6 +8,7 @@ using MusicShop.Repositories;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
+using System.Transactions;
 
 namespace MusicShop.DesktopUI.Code
 {
@@ -25,47 +26,38 @@ namespace MusicShop.DesktopUI.Code
 
         public void CheckTran(int sellerId, decimal? sumAmount)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            try
             {
-                connection.Open();
-
-                SqlCommand command = connection.CreateCommand();
-                SqlTransaction tran = connection.BeginTransaction();
-
-                try
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    CreateCheck(sellerId, (decimal)sumAmount, connection, command);
-                    FillCheckIn(connection, command);
+                    CreateCheck(sellerId, (decimal)sumAmount);
+                    FillCheckIn();
 
-                    tran.Commit();
-                }
-                catch
-                {
-                    MessageBox.Show("Error creating check. Please, try again");
-
-                    try
-                    {
-                        tran.Rollback();
-                    }
-                    catch(Exception exRollback)
-                    {
-                        MessageBox.Show(exRollback.Message);
-                    }
-                }
+                    scope.Complete();
+                }       
+            }
+            catch (TransactionAbortedException ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            catch (ApplicationException ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
 
+            
         } 
 
-        private void CreateCheck(int sellerId, decimal sumAmount, SqlConnection connection, SqlCommand command)
+        private void CreateCheck(int sellerId, decimal sumAmount)
         {
-            ch.CreateCheck(sellerId, sumAmount, connection, command);
+            ch.CreateCheck(sellerId, sumAmount);
         }
 
-        private void FillCheckIn(SqlConnection connection, SqlCommand command)
+        private void FillCheckIn()
         {
             foreach(CartItem c in _cart)
             {
-                ch.AddItemToCheck(c.AlbumId, c.Amount, c.PriceAmount, connection, command);
+                ch.AddItemToCheck(c.AlbumId, c.Amount, c.PriceAmount);
             }
         }
     }
