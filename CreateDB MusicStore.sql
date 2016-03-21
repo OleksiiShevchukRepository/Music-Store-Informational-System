@@ -48,8 +48,8 @@ REFERENCES tblGenre(Id)
 CREATE TABLE tblMusicShop
 (
 Id INT NOT NULL IDENTITY (1, 1),
-ProfitTotal DECIMAL(19, 4) NOT NULL,
-ExpenceTotal DECIMAL(19, 4) NOT NULL,
+ProfitTotal DECIMAL(19, 2) NOT NULL,
+ExpenceTotal DECIMAL(19, 2) NOT NULL,
 CONSTRAINT PK_tblMusicShop_ID PRIMARY KEY (Id)
 );
 
@@ -80,7 +80,8 @@ CREATE TABLE tblCheck
 (
 Id INT NOT NULL IDENTITY (1, 1),
 SellerId INT NOT NULL,
-SumOverall DECIMAL(19, 4) NULL
+DateStatement DATETIME NOT NULL,
+SumOverall DECIMAL(19, 2) NOT NULL
 CONSTRAINT PK_tblCheck_ID PRIMARY KEY (Id)
 CONSTRAINT FK_tblCheck_tblSeller FOREIGN KEY (SellerID)
 REFERENCES tblSeller(Id)
@@ -93,7 +94,7 @@ AlbumId INT NOT NULL,
 CheckId INT NOT NULL,
 SellDate DATETIME NOT NULL,
 Amount INT NOT NULL,
-SumItems DECIMAL(19, 4) NULL
+SumItems DECIMAL(19, 2) NULL
 CONSTRAINT PK_tblSoldItem_ID PRIMARY KEY (Id)
 CONSTRAINT FK_tblSoldItem_tblCheck FOREIGN KEY (CheckID)
 REFERENCES tblCheck(Id),
@@ -130,7 +131,7 @@ AlbumID INT NOT NULL,
 MusicShopID INT NOT NULL,
 Amount INT NOT NULL,
 PriceBought INT NOT NULL,
-PriceRealisation NUMERIC(19, 4) NOT NULL
+PriceRealisation NUMERIC(19, 2) NOT NULL
 CONSTRAINT PK_tblAlbumsInShopStorage_ID PRIMARY KEY (Id)
 CONSTRAINT FK_tblAlbumsInShopStorage_tblAlbum FOREIGN KEY (AlbumID)
 REFERENCES tblAlbum(Id),

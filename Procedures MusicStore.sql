@@ -5,7 +5,7 @@ GO
 CREATE PROCEDURE spDistributorAlbums_noFilters
 AS
 BEGIN
-	SELECT tblAlbum.NAME, tblArtist.Name, tblDistributor.Name, tblDistributorAlbums.Price, tblAlbum.LiquidRate FROM tblAlbum
+	SELECT tblAlbum.Id, tblAlbum.NAME, tblArtist.Name, tblDistributor.Name, tblDistributorAlbums.Price, tblAlbum.LiquidRate FROM tblAlbum
 	LEFT JOIN tblArtist
 	ON tblArtist.Id = tblAlbum.ArtistId
 	INNER JOIN tblDistributorAlbums
@@ -21,7 +21,7 @@ CREATE PROCEDURE spDistributorAlbums_Filters
 	@GenreId INT
 AS
 BEGIN
-	SELECT tblAlbum.NAME, tblArtist.Name, tblGenre.Name, tblDistributor.Name, tblDistributorAlbums.Price, tblAlbum.LiquidRate FROM tblAlbum
+	SELECT tblAlbum.Id, tblAlbum.NAME, tblArtist.Name, tblGenre.Name, tblDistributor.Name, tblDistributorAlbums.Price, tblAlbum.LiquidRate FROM tblAlbum
 	LEFT JOIN tblAlbumGenre
 	ON tblAlbum.Id = tblAlbumGenre.AlbumId
 	LEFT JOIN tblArtist
@@ -41,7 +41,7 @@ GO
 CREATE PROCEDURE spAlbumsInMusicStore_noFilters
 AS
 BEGIN
-	SELECT tblAlbum.Name as albName, tblArtist.Name as artName, tblAlbumsInShopStorage.PriceRealisation as price,
+	SELECT tblAlbum.Id as id, tblAlbum.Name as albName, tblArtist.Name as artName, tblAlbumsInShopStorage.PriceRealisation as price,
 	tblAlbum.RatingAllMusicCom as rateAllMusic, tblAlbumsInShopStorage.Amount as amount, tblAlbum.LiquidRate as liquidity FROM tblAlbum
 	LEFT JOIN tblArtist
 	ON tblArtist.Id = tblAlbum.ArtistId
@@ -55,7 +55,7 @@ CREATE PROCEDURE spAlbumsInMusicStore_Filters
 	@GenreId INT
 AS
 BEGIN
-	SELECT tblAlbum.Name as albName, tblArtist.Name as artName, tblGenre.Name as genre, tblAlbumsInShopStorage.PriceRealisation as price,
+	SELECT tblAlbum.Id as id, tblAlbum.Name as albName, tblArtist.Name as artName, tblGenre.Name as genre, tblAlbumsInShopStorage.PriceRealisation as price,
 	tblAlbum.RatingAllMusicCom as rateAllmusic, tblAlbum.LiquidRate as liquidity, tblAlbumsInShopStorage.Amount as amount FROM tblAlbum
 	LEFT JOIN tblArtist
 	ON tblArtist.Id = tblAlbum.ArtistId
@@ -74,5 +74,30 @@ CREATE PROCEDURE spSelectAllFromGenre
 AS
 BEGIN
 	SELECT Id, Name FROM tblGenre
+END
+GO
+
+CREATE PROCEDURE spCreateCheck
+	@SellerId INT,
+	@TotalSum DECIMAL(19, 2)
+AS
+BEGIN
+	INSERT INTO tblCheck (SellerId, SumOverall, DateStatement)
+	VALUES (@SellerId, @TotalSum, GETDATE())
+END
+GO
+
+CREATE PROCEDURE spCreateSoldItem
+	@AlbumId INT,
+	@Amount INT,
+	@Price DECIMAL(19, 2)
+AS
+BEGIN
+	DECLARE @CheckID INT;
+	DECLARE	@CheckDate DATETIME;
+	SET @CheckID = (SELECT TOP 1 Id FROM tblCheck ORDER BY Id DESC);
+	SET @CheckDate = (SELECT TOP 1 DateStatement FROM tblCheck ORDER BY DateStatement DESC)
+	INSERT INTO tblSoldItem (AlbumId, CheckId, SellDate, Amount, SumItems)
+	VALUES (@AlbumId, @CheckID, @CheckDate, @Amount, @Price);
 END
 GO
