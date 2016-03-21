@@ -41,7 +41,8 @@ GO
 CREATE PROCEDURE spAlbumsInMusicStore_noFilters
 AS
 BEGIN
-	SELECT tblAlbum.Name, tblArtist.Name, tblAlbumsInShopStorage.PriceRealisation, tblAlbum.RatingAllMusicCom, tblAlbum.LiquidRate FROM tblAlbum
+	SELECT tblAlbum.Name as albName, tblArtist.Name as artName, tblAlbumsInShopStorage.PriceRealisation as price,
+	tblAlbum.RatingAllMusicCom as rateAllMusic, tblAlbumsInShopStorage.Amount as amount, tblAlbum.LiquidRate as liquidity FROM tblAlbum
 	LEFT JOIN tblArtist
 	ON tblArtist.Id = tblAlbum.ArtistId
 	INNER JOIN tblAlbumsInShopStorage ON
@@ -54,7 +55,8 @@ CREATE PROCEDURE spAlbumsInMusicStore_Filters
 	@GenreId INT
 AS
 BEGIN
-	SELECT tblAlbum.Name, tblArtist.Name, tblGenre.Name, tblAlbumsInShopStorage.PriceRealisation, tblAlbum.RatingAllMusicCom, tblAlbum.LiquidRate FROM tblAlbum
+	SELECT tblAlbum.Name as albName, tblArtist.Name as artName, tblGenre.Name as genre, tblAlbumsInShopStorage.PriceRealisation as price,
+	tblAlbum.RatingAllMusicCom as rateAllmusic, tblAlbum.LiquidRate as liquidity, tblAlbumsInShopStorage.Amount as amount FROM tblAlbum
 	LEFT JOIN tblArtist
 	ON tblArtist.Id = tblAlbum.ArtistId
 	INNER JOIN tblAlbumsInShopStorage ON
@@ -67,3 +69,10 @@ BEGIN
 END
 GO
 
+
+CREATE PROCEDURE spSelectAllFromGenre
+AS
+BEGIN
+	SELECT Id, Name FROM tblGenre
+END
+GO

@@ -145,6 +145,12 @@ VALUES (1, 1, N'Ben', N'Gann', N'KC0293293'),
 		(2, 1, N'Johny', N'Sins', N'KC2165135');
 SET IDENTITY_INSERT tblSeller OFF;
 
+SET IDENTITY_INSERT tblSellerAuth ON;
+INSERT INTO tblSellerAuth(Id, [Password])
+VALUES (1, '12345'),
+		(2, 'QWERTY')
+SET IDENTITY_INSERT tblSellerAuth OFF;
+
 SET IDENTITY_INSERT tblDistributor ON;
 INSERT INTO tblDistributor(Id, Name)
 VALUES (1, N'Relapse'),
