@@ -31,7 +31,8 @@ namespace MusicShop.DesktopUI.Code
 
             PrintDocument printDocument = new PrintDocument();
 
-            printDialog.Document = printDocument; //add the document to the dialog box... 
+            // Add the document to the dialog box.
+            printDialog.Document = printDocument; 
 
             printDocument.PrintPage += new PrintPageEventHandler(CreateCheckTemplate);
 
@@ -41,8 +42,14 @@ namespace MusicShop.DesktopUI.Code
             {
                 printDocument.Print();
             }
+            else
+            {
+                MessageBox.Show("Customer refused from check. Operation Completed");
+            }
+            
         }
 
+        #region CheckTemplate
         private void CreateCheckTemplate(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             Graphics graphic = e.Graphics;
@@ -84,5 +91,7 @@ namespace MusicShop.DesktopUI.Code
                 _check.SellerName.PadRight(amountPadRight) + _check.SellerSurname.PadRight(amountPadRight) + _check.DateStatement;
             graphic.DrawString(checkInfo, font, new SolidBrush(Color.Black), startX, startY + offset);
         }
+
+        #endregion
     }
 }

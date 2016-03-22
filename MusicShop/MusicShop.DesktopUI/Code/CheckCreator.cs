@@ -27,9 +27,12 @@ namespace MusicShop.DesktopUI.Code
             {
                 using (TransactionScope scope = new TransactionScope())
                 {
+                    ApplyChangesToStorage();
                     CreateCheck(sellerId, (decimal)sumAmount);
                     FillCheckIn();
-
+                    Printer p = new Printer(_cart);
+                    p.Print();
+                    ClearStorage();
 
                     scope.Complete();
                 }       
@@ -48,6 +51,11 @@ namespace MusicShop.DesktopUI.Code
 
         #region TransactionMethods
 
+        private void ClearStorage()
+        {
+            ch.ClearShopStorage();
+        }
+
         private void CreateCheck(int sellerId, decimal sumAmount)
         {
             ch.CreateCheck(sellerId, sumAmount);
@@ -61,7 +69,16 @@ namespace MusicShop.DesktopUI.Code
             }
         }
 
+        private void ApplyChangesToStorage()
+        {
+            foreach (CartItem c in _cart)
+            {
+                ch.UpdateShowStorage(c.AlbumId, c.PriceItem, c.Amount);
+            }
+        }
+
         #endregion
+
     }
 
 

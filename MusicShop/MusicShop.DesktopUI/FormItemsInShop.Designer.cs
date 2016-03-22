@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormItemsInShop));
             this.sss = new System.Windows.Forms.DataGridView();
             this.clnAlbum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnAlbumId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +54,8 @@
             this.labelPriceTotalValue = new System.Windows.Forms.Label();
             this.labelArtist = new System.Windows.Forms.Label();
             this.comboBoxArtist = new System.Windows.Forms.ComboBox();
+            this.labeShoppingCart = new System.Windows.Forms.Label();
+            this.buttonLogOut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sss)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInCart)).BeginInit();
             this.SuspendLayout();
@@ -73,14 +76,14 @@
             this.clnGenre,
             this.clnRating,
             this.clnAmount});
-            this.sss.Location = new System.Drawing.Point(15, 70);
+            this.sss.Location = new System.Drawing.Point(15, 128);
             this.sss.MultiSelect = false;
             this.sss.Name = "sss";
             this.sss.ReadOnly = true;
             this.sss.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.sss.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.sss.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.sss.Size = new System.Drawing.Size(808, 536);
+            this.sss.Size = new System.Drawing.Size(808, 478);
             this.sss.TabIndex = 0;
             // 
             // clnAlbum
@@ -148,7 +151,7 @@
             // buttonToCart
             // 
             this.buttonToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonToCart.Location = new System.Drawing.Point(836, 235);
+            this.buttonToCart.Location = new System.Drawing.Point(836, 245);
             this.buttonToCart.Name = "buttonToCart";
             this.buttonToCart.Size = new System.Drawing.Size(60, 39);
             this.buttonToCart.TabIndex = 1;
@@ -169,6 +172,10 @@
             // 
             // dataGridViewInCart
             // 
+            this.dataGridViewInCart.AllowUserToAddRows = false;
+            this.dataGridViewInCart.AllowUserToDeleteRows = false;
+            this.dataGridViewInCart.AllowUserToResizeColumns = false;
+            this.dataGridViewInCart.AllowUserToResizeRows = false;
             this.dataGridViewInCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewInCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clnAlbumCart,
@@ -176,9 +183,13 @@
             this.clnPriceCart,
             this.clnAmountCart,
             this.clnPriceTotal});
-            this.dataGridViewInCart.Location = new System.Drawing.Point(916, 70);
+            this.dataGridViewInCart.Location = new System.Drawing.Point(916, 128);
+            this.dataGridViewInCart.MultiSelect = false;
             this.dataGridViewInCart.Name = "dataGridViewInCart";
-            this.dataGridViewInCart.Size = new System.Drawing.Size(336, 463);
+            this.dataGridViewInCart.ReadOnly = true;
+            this.dataGridViewInCart.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridViewInCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewInCart.Size = new System.Drawing.Size(336, 405);
             this.dataGridViewInCart.TabIndex = 3;
             // 
             // clnAlbumCart
@@ -210,6 +221,7 @@
             this.clnAmountCart.Frozen = true;
             this.clnAmountCart.HeaderText = "Amount";
             this.clnAmountCart.Name = "clnAmountCart";
+            this.clnAmountCart.ReadOnly = true;
             this.clnAmountCart.Width = 75;
             // 
             // clnPriceTotal
@@ -223,7 +235,7 @@
             // comboBoxGenre
             // 
             this.comboBoxGenre.FormattingEnabled = true;
-            this.comboBoxGenre.Location = new System.Drawing.Point(311, 38);
+            this.comboBoxGenre.Location = new System.Drawing.Point(311, 93);
             this.comboBoxGenre.Name = "comboBoxGenre";
             this.comboBoxGenre.Size = new System.Drawing.Size(157, 21);
             this.comboBoxGenre.TabIndex = 4;
@@ -232,7 +244,7 @@
             // labelGenre
             // 
             this.labelGenre.AutoSize = true;
-            this.labelGenre.Location = new System.Drawing.Point(233, 41);
+            this.labelGenre.Location = new System.Drawing.Point(233, 96);
             this.labelGenre.Name = "labelGenre";
             this.labelGenre.Size = new System.Drawing.Size(72, 13);
             this.labelGenre.TabIndex = 5;
@@ -241,7 +253,7 @@
             // labelItemsInShop
             // 
             this.labelItemsInShop.AutoSize = true;
-            this.labelItemsInShop.Location = new System.Drawing.Point(378, 9);
+            this.labelItemsInShop.Location = new System.Drawing.Point(378, 64);
             this.labelItemsInShop.Name = "labelItemsInShop";
             this.labelItemsInShop.Size = new System.Drawing.Size(71, 13);
             this.labelItemsInShop.TabIndex = 6;
@@ -288,7 +300,7 @@
             // labelArtist
             // 
             this.labelArtist.AutoSize = true;
-            this.labelArtist.Location = new System.Drawing.Point(12, 41);
+            this.labelArtist.Location = new System.Drawing.Point(12, 96);
             this.labelArtist.Name = "labelArtist";
             this.labelArtist.Size = new System.Drawing.Size(33, 13);
             this.labelArtist.TabIndex = 12;
@@ -297,16 +309,36 @@
             // comboBoxArtist
             // 
             this.comboBoxArtist.FormattingEnabled = true;
-            this.comboBoxArtist.Location = new System.Drawing.Point(51, 38);
+            this.comboBoxArtist.Location = new System.Drawing.Point(51, 93);
             this.comboBoxArtist.Name = "comboBoxArtist";
             this.comboBoxArtist.Size = new System.Drawing.Size(162, 21);
             this.comboBoxArtist.TabIndex = 13;
+            // 
+            // labeShoppingCart
+            // 
+            this.labeShoppingCart.AutoSize = true;
+            this.labeShoppingCart.Location = new System.Drawing.Point(1069, 64);
+            this.labeShoppingCart.Name = "labeShoppingCart";
+            this.labeShoppingCart.Size = new System.Drawing.Size(74, 13);
+            this.labeShoppingCart.TabIndex = 14;
+            this.labeShoppingCart.Text = "Shopping Cart";
+            // 
+            // buttonLogOut
+            // 
+            this.buttonLogOut.Location = new System.Drawing.Point(1177, 12);
+            this.buttonLogOut.Name = "buttonLogOut";
+            this.buttonLogOut.Size = new System.Drawing.Size(75, 23);
+            this.buttonLogOut.TabIndex = 15;
+            this.buttonLogOut.Text = "Log out";
+            this.buttonLogOut.UseVisualStyleBackColor = true;
             // 
             // FormItemsInShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.buttonLogOut);
+            this.Controls.Add(this.labeShoppingCart);
             this.Controls.Add(this.comboBoxArtist);
             this.Controls.Add(this.labelArtist);
             this.Controls.Add(this.labelPriceTotalValue);
@@ -320,8 +352,10 @@
             this.Controls.Add(this.buttonFromCart);
             this.Controls.Add(this.buttonToCart);
             this.Controls.Add(this.sss);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormItemsInShop";
-            this.Text = "Main Window";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "H2O Licenced CD\'s Main Window";
             ((System.ComponentModel.ISupportInitialize)(this.sss)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInCart)).EndInit();
             this.ResumeLayout(false);
@@ -355,5 +389,7 @@
         private System.Windows.Forms.Label labelPriceTotalValue;
         private System.Windows.Forms.Label labelArtist;
         private System.Windows.Forms.ComboBox comboBoxArtist;
+        private System.Windows.Forms.Label labeShoppingCart;
+        private System.Windows.Forms.Button buttonLogOut;
     }
 }

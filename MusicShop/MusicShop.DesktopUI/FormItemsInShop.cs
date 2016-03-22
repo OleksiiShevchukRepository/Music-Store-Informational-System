@@ -59,8 +59,7 @@ namespace MusicShop.DesktopUI
         {
             CheckCreator ch = new CheckCreator(g.Cart);
             ch.CheckTran(1, g.CartSum());
-            Printer p = new Printer(g.Cart);
-            p.Print();
+            g.ShowAlbumsInStoreNoFilters(sss);
             g.ClearCart(dataGridViewInCart, labelPriceTotalValue);
         }
     }
