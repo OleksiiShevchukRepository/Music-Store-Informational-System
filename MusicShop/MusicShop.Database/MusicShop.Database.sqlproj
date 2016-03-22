@@ -73,13 +73,17 @@
     <Build Include="dbo\Tables\tblSellerAuth.sql" />
     <Build Include="dbo\Tables\tblCheck.sql" />
     <Build Include="dbo\Tables\tblSoldItem.sql" />
-    <Build Include="dbo\Tables\tblDistributor.sql" />
-    <Build Include="dbo\Tables\tblDistributorAlbums.sql" />
     <Build Include="dbo\Tables\tblAlbumsInShopStorage.sql" />
-    <Build Include="dbo\Stored Procedures\spDistributorAlbums_noFilters.sql" />
-    <Build Include="dbo\Stored Procedures\spDistributorAlbums_Filters.sql" />
     <Build Include="dbo\Stored Procedures\spAlbumsInMusicStore_noFilters.sql" />
     <Build Include="dbo\Stored Procedures\spAlbumsInMusicStore_Filters.sql" />
-    <Build Include="dbo\Stored Procedures\spSelectAllFromArtist.sql" />
+    <Build Include="dbo\Stored Procedures\spSelectAllFromGenre.sql" />
+    <Build Include="dbo\Stored Procedures\spCreateCheck.sql" />
+    <Build Include="dbo\Stored Procedures\spCreateSoldItem.sql" />
+    <Build Include="dbo\Stored Procedures\spCheckInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateShopStorage.sql" />
+    <Build Include="dbo\Stored Procedures\spClearStorage.sql" />
+    <Build Include="dbo\Stored Procedures\spGetUserByLogin.sql" />
+    <Build Include="dbo\Stored Procedures\spAuthUser.sql" />
+    <Build Include="dbo\Stored Procedures\spDeauthUser.sql" />
   </ItemGroup>
 </Project>
