@@ -68,7 +68,7 @@ VALUES (1, 1, N'Dark side of the moon', 1973, 10),
 		(6, 4, N'Garbage', 1995, 9),
 		(7, 5, N'Lightdub Sun', 2000, 8),
 		(8, 5, N'Fear of a Blank Planet', 2007, 9),
-		(9, 6, N'Never Mind the Bollocks Here''s the Sex Pistols', 1977, 10),
+		(9, 6, N'Here''s the Sex Pistols', 1977, 10),
 		(10, 7, N'Ramones', 1976, 10),
 		(11, 8, N'Master of Puppets', 1986, 10),
 		(12, 8, N'Load', 1996, 5),
@@ -135,8 +135,8 @@ VALUES (1, 1, 2), (2, 1, 11), (3, 1, 23), --Dark Side Of the Moon
 SET IDENTITY_INSERT tblAlbumGenre OFF;
 
 SET IDENTITY_INSERT tblMusicShop ON;
-INSERT INTO tblMusicShop (Id, ProfitTotal, ExpenceTotal)
-VALUES (1, 0, 0);
+INSERT INTO tblMusicShop (Id)
+VALUES (1);
 SET IDENTITY_INSERT tblMusicShop OFF;
 
 SET IDENTITY_INSERT tblSeller ON;
@@ -150,27 +150,6 @@ INSERT INTO tblSellerAuth(Id, [Password])
 VALUES (1, '12345'),
 		(2, 'QWERTY')
 SET IDENTITY_INSERT tblSellerAuth OFF;
-
-SET IDENTITY_INSERT tblDistributor ON;
-INSERT INTO tblDistributor(Id, Name)
-VALUES (1, N'Relapse'),
-		(2, N'Epic');
-SET IDENTITY_INSERT tblDistributor OFF;
-
-SET IDENTITY_INSERT tblDistributorAlbums ON;
-INSERT INTO tblDistributorAlbums (Id, DistributorId, AlbumId, Price)
-VALUES (1, 1, 1, 10), (2, 1, 2, 10), (3, 1, 3, 10), (4, 1, 4, 10),
-		(5, 1, 5, 10), (6, 1, 6, 10), (7, 1, 7, 10), (8, 1, 8, 10),
-		(9, 1, 9, 10), (10, 1, 10, 10), (11, 1, 11, 10), (12, 1, 12, 10),
-		(13, 1, 13, 10), (14, 1, 14, 10), (15, 1, 15, 10), (16, 1, 16, 10),
-		(17, 1, 17, 10), (18, 1, 18, 10), (19, 1, 19, 10), (20, 1, 20, 10),
-		(21, 2, 10, 15), (22, 2, 11, 15), (23, 2, 12, 15), (24, 2, 13, 15),
-		(25, 2, 14, 15), (26, 2, 15, 15), (27, 2, 16, 15), (28, 2, 17, 15),
-		(29, 2, 18, 15), (30, 2, 19, 15), (31, 2, 20, 15), (32, 2, 21, 15),
-		(33, 2, 22, 15), (34, 2, 23, 15), (35, 2, 24, 15), (36, 2, 25, 15),
-		(37, 2, 26, 15), (38, 2, 27, 15), (39, 2, 28, 15), (40, 2, 29, 15),
-		(41, 2, 30, 15), (42, 2, 31, 15), (43, 2, 32, 15), (44, 2, 33, 15);
-SET IDENTITY_INSERT tblDistributorAlbums OFF;
 
 SET IDENTITY_INSERT tblAlbumsInShopStorage ON
 INSERT INTO tblAlbumsInShopStorage (Id, MusicShopID, AlbumID, Amount, PriceBought, PriceRealisation)

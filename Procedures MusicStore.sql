@@ -1,52 +1,16 @@
 USE MusicStore;
 GO
 
---Shows all albums, which are available to buy now.
-CREATE PROCEDURE spDistributorAlbums_noFilters
-AS
-BEGIN
-	SELECT tblAlbum.Id, tblAlbum.NAME, tblArtist.Name, tblDistributor.Name, tblDistributorAlbums.Price, tblAlbum.LiquidRate FROM tblAlbum
-	LEFT JOIN tblArtist
-	ON tblArtist.Id = tblAlbum.ArtistId
-	INNER JOIN tblDistributorAlbums
-	ON tblDistributorAlbums.AlbumId = tblAlbum.Id
-	INNER JOIN tblDistributor
-	ON tblDistributorAlbums.DistributorId = tblDistributor.Id;
-	--ORDER BY tblAlbum.NAME
-END
-GO
-
---Shows all albums in select genre, which are available to buy now.
-CREATE PROCEDURE spDistributorAlbums_Filters
-	@GenreId INT
-AS
-BEGIN
-	SELECT tblAlbum.Id, tblAlbum.NAME, tblArtist.Name, tblGenre.Name, tblDistributor.Name, tblDistributorAlbums.Price, tblAlbum.LiquidRate FROM tblAlbum
-	LEFT JOIN tblAlbumGenre
-	ON tblAlbum.Id = tblAlbumGenre.AlbumId
-	LEFT JOIN tblArtist
-	ON tblArtist.Id = tblAlbum.ArtistId
-	INNER JOIN tblGenre
-	ON tblAlbumGenre.GenreID = tblGenre.Id
-	INNER JOIN tblDistributorAlbums
-	ON tblDistributorAlbums.AlbumId = tblAlbum.Id
-	INNER JOIN tblDistributor
-	ON tblDistributorAlbums.DistributorId = tblDistributor.Id
-	WHERE tblGenre.Id = @GenreId
-	--ORDER BY tblAlbum.NAME
-END
-GO
-
 --Shows all albums in music shop storage, no filters
 CREATE PROCEDURE spAlbumsInMusicStore_noFilters
 AS
 BEGIN
-	SELECT tblAlbum.Id as id, tblAlbum.Name as albName, tblArtist.Name as artName, tblAlbumsInShopStorage.PriceRealisation as price,
-	tblAlbum.RatingAllMusicCom as rateAllMusic, tblAlbumsInShopStorage.Amount as amount, tblAlbum.LiquidRate as liquidity FROM tblAlbum
-	LEFT JOIN tblArtist
-	ON tblArtist.Id = tblAlbum.ArtistId
-	INNER JOIN tblAlbumsInShopStorage ON
-	tblAlbumsInShopStorage.AlbumID = tblAlbum.Id
+	SELECT alb.Id as id, alb.Name as albName, art.Name as artName, ass.PriceRealisation as price,
+	alb.RatingAllMusicCom as rateAllMusic, ass.Amount as amount FROM tblAlbum as alb
+	LEFT JOIN tblArtist as art
+	ON art.Id = alb.ArtistId
+	INNER JOIN tblAlbumsInShopStorage as ass ON
+	ass.AlbumID = alb.Id
 END
 GO
 
@@ -55,17 +19,17 @@ CREATE PROCEDURE spAlbumsInMusicStore_Filters
 	@GenreId INT
 AS
 BEGIN
-	SELECT tblAlbum.Id as id, tblAlbum.Name as albName, tblArtist.Name as artName, tblGenre.Name as genre, tblAlbumsInShopStorage.PriceRealisation as price,
-	tblAlbum.RatingAllMusicCom as rateAllmusic, tblAlbum.LiquidRate as liquidity, tblAlbumsInShopStorage.Amount as amount FROM tblAlbum
-	LEFT JOIN tblArtist
-	ON tblArtist.Id = tblAlbum.ArtistId
-	INNER JOIN tblAlbumsInShopStorage ON
-	tblAlbumsInShopStorage.AlbumID = tblAlbum.Id
-	LEFT JOIN tblAlbumGenre
-	ON tblAlbum.Id = tblAlbumGenre.AlbumId
-	INNER JOIN tblGenre
-	ON tblAlbumGenre.GenreID = tblGenre.Id
-	WHERE tblGenre.Id = @GenreId
+	SELECT alb.Id as id, alb.Name as albName, art.Name as artName, g.Name as genre, ass.PriceRealisation as price,
+	alb.RatingAllMusicCom as rateAllmusic, ass.Amount as amount FROM tblAlbum as alb
+	LEFT JOIN tblArtist as art
+	ON art.Id = alb.ArtistId
+	INNER JOIN tblAlbumsInShopStorage as ass
+	ON ass.AlbumID = alb.Id
+	LEFT JOIN tblAlbumGenre as ag
+	ON alb.Id = ag.AlbumId
+	INNER JOIN tblGenre as g
+	ON ag.GenreID = g.Id
+	WHERE g.Id = @GenreId
 END
 GO
 
@@ -99,5 +63,16 @@ BEGIN
 	SET @CheckDate = (SELECT TOP 1 DateStatement FROM tblCheck ORDER BY DateStatement DESC)
 	INSERT INTO tblSoldItem (AlbumId, CheckId, SellDate, Amount, SumItems)
 	VALUES (@AlbumId, @CheckID, @CheckDate, @Amount, @Price);
+END
+GO
+
+CREATE PROCEDURE spCheckInfo
+AS
+BEGIN
+	SELECT TOP 1 ch.Id as id, ch.SumOverall as total, ch.DateStatement as [date],
+	s.Name as name, s.Surname as surname FROM tblCheck as ch
+	INNER JOIN tblSeller as s ON
+	s.Id = ch.SellerId
+	WHERE ch.Id = (SELECT TOP 1 ch.Id FROM tblCheck ORDER BY ch.Id DESC);
 END
 GO

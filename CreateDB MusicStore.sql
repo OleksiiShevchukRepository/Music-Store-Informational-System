@@ -8,7 +8,6 @@ CREATE TABLE tblArtist
 (
 Id INT NOT NULL IDENTITY (1, 1),
 Name NVARCHAR(50) NOT NULL,
-[Description] NVARCHAR NULL
 CONSTRAINT PK_tblArtist_ID PRIMARY KEY (Id)
 );
 
@@ -18,8 +17,7 @@ Id INT NOT NULL IDENTITY (1, 1),
 ArtistId INT NULL,
 Name NVARCHAR(50) NOT NULL,
 [Year] INT NULL,
-RatingAllMusicCom INT NULL,
-LiquidRate FLOAT NULL
+RatingAllMusicCom INT NULL
 CONSTRAINT PK_tblAlbum_ID PRIMARY KEY (Id)
 CONSTRAINT FK_tblAlbum_tblArtist FOREIGN KEY (ArtistId)
 REFERENCES tblArtist(Id)
@@ -29,7 +27,6 @@ CREATE TABLE tblGenre
 (
 Id INT NOT NULL IDENTITY (1, 1),
 Name NVARCHAR(50) NOT NULL,
-Description NVARCHAR NULL
 CONSTRAINT PK_tblGenre_ID PRIMARY KEY(Id)
 );
 
@@ -48,8 +45,6 @@ REFERENCES tblGenre(Id)
 CREATE TABLE tblMusicShop
 (
 Id INT NOT NULL IDENTITY (1, 1),
-ProfitTotal DECIMAL(19, 2) NOT NULL,
-ExpenceTotal DECIMAL(19, 2) NOT NULL,
 CONSTRAINT PK_tblMusicShop_ID PRIMARY KEY (Id)
 );
 
@@ -61,8 +56,7 @@ Name NVARCHAR(50) NOT NULL,
 Surname NVARCHAR(50) NOT NULL,
 PassportID NVARCHAR(50) NOT NULL,
 Birthday DATETIME NULL,
-Rating INT NULL
-CONSTRAINT PK_tblSeller_ID PRIMARY KEY (Id)
+CONSTRAINT PK_tblSeller_ID PRIMARY KEY (Id),
 CONSTRAINT FK_tblSeller_tblMusicShop FOREIGN KEY (ShopID)
 REFERENCES tblMusicShop(Id)
 );
@@ -101,28 +95,6 @@ REFERENCES tblCheck(Id),
 CONSTRAINT FK_tblSoldItem_tblAlbum FOREIGN KEY (AlbumID)
 REFERENCES tblAlbum(Id)
 );
-
-CREATE TABLE tblDistributor
-(
-Id INT NOT NULL IDENTITY (1, 1),
-Name NVARCHAR(50) NOT NULL,
-Rating INT NULL
-CONSTRAINT PK_tblDistributor_ID PRIMARY KEY (Id)
-);
-
-CREATE TABLE tblDistributorAlbums
-(
-Id INT NOT NULL IDENTITY (1, 1),
-DistributorId INT NOT NULL,
-AlbumId INT NOT NULL,
-Price DECIMAL(19, 4) NOT NULL
-CONSTRAINT PK_tblDistributorAlbums_ID PRIMARY KEY (Id)
-CONSTRAINT FK_tblDistributorAlbums_tblAlbum FOREIGN KEY (AlbumId)
-REFERENCES tblAlbum(Id),
-CONSTRAINT FK_tblDistributorAlbums_tblDistributor FOREIGN KEY (DistributorID)
-REFERENCES tblDistributor(Id)
-);
-
 
 CREATE TABLE tblAlbumsInShopStorage
 (
