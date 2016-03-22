@@ -49,26 +49,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\CheckCreator.cs" />
+    <Compile Include="Code\CurrentUser.cs" />
     <Compile Include="Code\GridViewer.cs" />
     <Compile Include="Code\Printer.cs" />
-    <Compile Include="FormItemsInShop.cs">
+    <Compile Include="Forms\FormItemsInShop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormItemsInShop.Designer.cs">
+    <Compile Include="Forms\FormItemsInShop.Designer.cs">
       <DependentUpon>FormItemsInShop.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAuthefication.cs">
+    <Compile Include="Forms\FormAuthefication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAuthefication.Designer.cs">
+    <Compile Include="Forms\FormAuthefication.Designer.cs">
       <DependentUpon>FormAuthefication.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormAuthefication.resx">
+    <EmbeddedResource Include="Forms\FormAuthefication.resx">
       <DependentUpon>FormAuthefication.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormItemsInShop.resx">
+    <EmbeddedResource Include="Forms\FormItemsInShop.resx">
       <DependentUpon>FormItemsInShop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

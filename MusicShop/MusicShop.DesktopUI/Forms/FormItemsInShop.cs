@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using MusicShop.DesktopUI.Code;
 using MusicShop.Repositories;
-using MusicShop.Entities;
-using System.Collections;
-using MusicShop.DesktopUI.Code;
+using System;
+using System.Configuration;
+using System.Windows.Forms;
 
 namespace MusicShop.DesktopUI
 {
@@ -24,8 +16,7 @@ namespace MusicShop.DesktopUI
 
             g.ShowAlbumsInStoreNoFilters(sss);
             g.InsertMusicGenres(comboBoxGenre);
-
-            
+            labelSeller.Text = "Seller:" + CurrentUser.Name + " " + CurrentUser.Surname;
         }
 
         private void comboBoxGenre_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,9 +49,22 @@ namespace MusicShop.DesktopUI
         private void buttonprintCheck_Click(object sender, EventArgs e)
         {
             CheckCreator ch = new CheckCreator(g.Cart);
-            ch.CheckTran(1, g.CartSum());
+            ch.CheckTran(CurrentUser.Id, g.CartSum());
             g.ShowAlbumsInStoreNoFilters(sss);
             g.ClearCart(dataGridViewInCart, labelPriceTotalValue);
+        }
+
+        private void buttonLogOut_Click(object sender, EventArgs e)
+        {
+            UserRepository usr = new UserRepository(ConfigurationManager.ConnectionStrings["MusicStore"].ConnectionString);
+            DialogResult res = MessageBox.Show("Are you sure?", "Log Out", MessageBoxButtons.YesNo);
+            
+            if(res == DialogResult.Yes)
+            {
+                usr.DeauthUser(CurrentUser.Id);
+                this.Close();
+            }
+
         }
     }
 }

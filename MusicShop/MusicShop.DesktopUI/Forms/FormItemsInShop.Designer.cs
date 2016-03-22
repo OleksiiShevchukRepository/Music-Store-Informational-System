@@ -56,6 +56,7 @@
             this.comboBoxArtist = new System.Windows.Forms.ComboBox();
             this.labeShoppingCart = new System.Windows.Forms.Label();
             this.buttonLogOut = new System.Windows.Forms.Button();
+            this.labelSeller = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sss)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInCart)).BeginInit();
             this.SuspendLayout();
@@ -331,12 +332,22 @@
             this.buttonLogOut.TabIndex = 15;
             this.buttonLogOut.Text = "Log out";
             this.buttonLogOut.UseVisualStyleBackColor = true;
+            this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
+            // 
+            // labelSeller
+            // 
+            this.labelSeller.AutoSize = true;
+            this.labelSeller.Location = new System.Drawing.Point(1045, 17);
+            this.labelSeller.Name = "labelSeller";
+            this.labelSeller.Size = new System.Drawing.Size(0, 13);
+            this.labelSeller.TabIndex = 16;
             // 
             // FormItemsInShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.labelSeller);
             this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.labeShoppingCart);
             this.Controls.Add(this.comboBoxArtist);
@@ -391,5 +402,6 @@
         private System.Windows.Forms.ComboBox comboBoxArtist;
         private System.Windows.Forms.Label labeShoppingCart;
         private System.Windows.Forms.Button buttonLogOut;
+        private System.Windows.Forms.Label labelSeller;
     }
 }

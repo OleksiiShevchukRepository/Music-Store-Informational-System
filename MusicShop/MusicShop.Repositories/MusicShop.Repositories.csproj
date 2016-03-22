@@ -45,6 +45,7 @@
     <Compile Include="IShopStorageRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShopStorageRepository.cs" />
+    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MusicShop.Entities\MusicShop.Entities.csproj">

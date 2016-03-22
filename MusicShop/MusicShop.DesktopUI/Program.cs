@@ -16,7 +16,7 @@ namespace MusicShop.DesktopUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormItemsInShop());
+            Application.Run(new FormAuthefication());
         }
     }
 }
