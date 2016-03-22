@@ -1,11 +1,7 @@
 ﻿using MusicShop.Entities;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicShop.Repositories
 {
@@ -35,7 +31,6 @@ namespace MusicShop.Repositories
                     {
                         var genres = new Dictionary<int, string>();
 
-                        //<Genre> genres = new List<Genre>();
                         genres.Add(0, "Any Genre");
                         Genre genre = null;
 

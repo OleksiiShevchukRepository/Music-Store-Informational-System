@@ -1,9 +1,5 @@
-﻿using System;
+﻿using MusicShop.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MusicShop.Entities;
 
 namespace MusicShop.Repositories
 {
@@ -13,3 +9,4 @@ namespace MusicShop.Repositories
         List<AlbumsInStorage> SelectByGenre(int genreId);
     }
 }
+

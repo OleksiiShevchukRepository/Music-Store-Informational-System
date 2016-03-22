@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Code\CheckCreator.cs" />
     <Compile Include="Code\GridViewer.cs" />
+    <Compile Include="Code\Printer.cs" />
     <Compile Include="FormItemsInShop.cs">
       <SubType>Form</SubType>
     </Compile>

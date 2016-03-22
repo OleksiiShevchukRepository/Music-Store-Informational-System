@@ -1,28 +1,25 @@
 ﻿using MusicShop.Entities;
+using MusicShop.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MusicShop.Repositories;
-using System.Data.SqlClient;
-using System.Windows.Forms;
-using System.Data;
+using System.Configuration;
 using System.Transactions;
+using System.Windows.Forms;
 
 namespace MusicShop.DesktopUI.Code
 {
     public class CheckCreator
     {
         private readonly List<CartItem> _cart;
-        private readonly string _connectionString = @"Server=(localdb)\MSSQLLocalDB;Database=MusicStore;Trusted_Connection=True;";
 
-        private CheckRepository ch = new CheckRepository(@"Server=(localdb)\MSSQLLocalDB;Database=MusicStore;Trusted_Connection=True;");
+        private CheckRepository ch = new CheckRepository(ConfigurationManager.ConnectionStrings["MusicStore"].ConnectionString);
 
         public CheckCreator(List<CartItem> cartItems)
         {
             _cart = cartItems;
         }
+
+        #region Transaction
 
         public void CheckTran(int sellerId, decimal? sumAmount)
         {
@@ -32,6 +29,7 @@ namespace MusicShop.DesktopUI.Code
                 {
                     CreateCheck(sellerId, (decimal)sumAmount);
                     FillCheckIn();
+
 
                     scope.Complete();
                 }       
@@ -44,9 +42,11 @@ namespace MusicShop.DesktopUI.Code
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
 
-            
-        } 
+        #endregion
+
+        #region TransactionMethods
 
         private void CreateCheck(int sellerId, decimal sumAmount)
         {
@@ -60,6 +60,8 @@ namespace MusicShop.DesktopUI.Code
                 ch.AddItemToCheck(c.AlbumId, c.Amount, c.PriceAmount);
             }
         }
+
+        #endregion
     }
 
 

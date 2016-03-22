@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MusicShop.Entities;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace MusicShop.Repositories
 {
@@ -13,6 +8,7 @@ namespace MusicShop.Repositories
     {
         private const string spCreateCheck = "spCreateCheck";
         private const string spCreateSoldItem = "spCreateSoldItem";
+        private const string spCheckInfo = "spCheckInfo";
 
         private readonly string _connectionString;
 
@@ -20,6 +16,8 @@ namespace MusicShop.Repositories
         {
             _connectionString = connectionString;
         }
+
+        #region CheckCreation
 
         public void CreateCheck(int sellerId, decimal totalSum)
         {
@@ -59,6 +57,42 @@ namespace MusicShop.Repositories
                 }
             }
         }
+
+        #endregion
+
+        #region CheckExecution
+        public Check GetCheckInfo()
+        {
+            Check check = new Check();
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = spCheckInfo;
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            check.Id = (int)reader["id"];
+                            check.SellerName = (string)reader["name"];
+                            check.SellerSurname = (string)reader["surname"];
+                            check.SumTotal = (decimal)reader["total"];
+                            check.DateStatement = (DateTime)reader["date"];
+                        }
+                    }
+                }
+            }
+
+            return check;
+        }
+
+        #endregion
     }
 }
 

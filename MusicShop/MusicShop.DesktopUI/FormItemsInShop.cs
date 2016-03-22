@@ -24,7 +24,8 @@ namespace MusicShop.DesktopUI
 
             g.ShowAlbumsInStoreNoFilters(sss);
             g.InsertMusicGenres(comboBoxGenre);
-            //ToCart();
+
+            
         }
 
         private void comboBoxGenre_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,6 +59,9 @@ namespace MusicShop.DesktopUI
         {
             CheckCreator ch = new CheckCreator(g.Cart);
             ch.CheckTran(1, g.CartSum());
+            Printer p = new Printer(g.Cart);
+            p.Print();
+            g.ClearCart(dataGridViewInCart, labelPriceTotalValue);
         }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using MusicShop.Entities;
 using MusicShop.Repositories;
-using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MusicShop.DesktopUI.Code
@@ -23,7 +21,6 @@ namespace MusicShop.DesktopUI.Code
                 return _cart;
             }
         }
-
 
         #region ShoppingCartOperations
         public decimal? CartSum()
@@ -120,9 +117,11 @@ namespace MusicShop.DesktopUI.Code
 
         #endregion
 
+        #region MusicGenresInsertion
+
         public void InsertMusicGenres(ComboBox cb)
         {
-            GenreRepository gr = new GenreRepository(@"Server=(localdb)\MSSQLLocalDB;Database=MusicStore;Trusted_Connection=True;");
+            GenreRepository gr = new GenreRepository(ConfigurationManager.ConnectionStrings["MusicStore"].ConnectionString);
             Dictionary<int, string> dg = gr.SelectAll();
 
             cb.DataSource = new BindingSource(dg, null);
@@ -130,9 +129,13 @@ namespace MusicShop.DesktopUI.Code
             cb.ValueMember = "Key";
         }
 
+        #endregion
+
+        #region ShowAlbumsInStore
+
         public void ShowAlbumsInStoreNoFilters(DataGridView gridView)
         {
-            ShopStorageRepository ssr = new ShopStorageRepository(@"Server=(localdb)\MSSQLLocalDB;Database=MusicStore;Trusted_Connection=True;");
+            ShopStorageRepository ssr = new ShopStorageRepository(ConfigurationManager.ConnectionStrings["MusicStore"].ConnectionString);
             List<AlbumsInStorage> ais = ssr.SelectAll();
 
             // No genre show.
@@ -160,7 +163,7 @@ namespace MusicShop.DesktopUI.Code
 
         public void ShowAlbumsInStoreByGenre(DataGridView gridView, int genreId)
         {
-            ShopStorageRepository ssr = new ShopStorageRepository(@"Server=(localdb)\MSSQLLocalDB;Database=MusicStore;Trusted_Connection=True;");
+            ShopStorageRepository ssr = new ShopStorageRepository(ConfigurationManager.ConnectionStrings["MusicStore"].ConnectionString);
             List<AlbumsInStorage> ais = ssr.SelectByGenre(genreId);
 
             gridView.Columns["clnGenre"].Visible = true;
@@ -185,4 +188,7 @@ namespace MusicShop.DesktopUI.Code
             }
         }
     }
+
+    #endregion
 }
+

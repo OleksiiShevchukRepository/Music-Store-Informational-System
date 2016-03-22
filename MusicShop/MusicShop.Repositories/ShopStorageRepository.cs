@@ -1,11 +1,8 @@
-﻿using System;
+﻿using MusicShop.Entities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MusicShop.Entities;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace MusicShop.Repositories
 {
@@ -20,6 +17,8 @@ namespace MusicShop.Repositories
         {
             _connectionString = connectionString;
         }
+
+        #region Selections
 
         public List<AlbumsInStorage> SelectAll()
         {
@@ -46,12 +45,6 @@ namespace MusicShop.Repositories
                             album.ArtistName = (string)reader["artName"];
                             album.RealisationPrise = (decimal)reader["price"];
                             album.RatingAllMusic = (int)reader["rateAllMusic"];
-
-                            if (reader["liquidity"] != DBNull.Value)
-                            {
-                                album.LiquidRate = (float)reader["liquidity"];
-                            }
-
                             album.AmountInStorage = (int)reader["amount"];
                             albums.Add(album);
                         }
@@ -89,12 +82,6 @@ namespace MusicShop.Repositories
                             album.RealisationPrise = (decimal)reader["price"];
                             album.Genre = (string)reader["genre"];
                             album.RatingAllMusic = (int)reader["rateAllMusic"];
-
-                            if (reader["liquidity"] != DBNull.Value)
-                            {
-                                album.LiquidRate = (float)reader["liquidity"];
-                            }
-
                             album.AmountInStorage = (int)reader["amount"];
                             albums.Add(album);
                         }
@@ -104,5 +91,7 @@ namespace MusicShop.Repositories
                 }
             }
         }
+
+        #endregion
     }
 }
