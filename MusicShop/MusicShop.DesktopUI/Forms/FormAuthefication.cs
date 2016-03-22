@@ -24,6 +24,7 @@ namespace MusicShop.DesktopUI
             _usr = new UserRepository(ConfigurationManager.ConnectionStrings["MusicStore"].ConnectionString);
 
             InitializeComponent();
+            textBoxPassword.PasswordChar = '*';
         }
 
         #region Buttons

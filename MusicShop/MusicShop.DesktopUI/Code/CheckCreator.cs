@@ -23,27 +23,34 @@ namespace MusicShop.DesktopUI.Code
 
         public void CheckTran(int sellerId, decimal? sumAmount)
         {
-            try
+            if (_cart.Count > 0)
             {
-                using (TransactionScope scope = new TransactionScope())
+                try
                 {
-                    ApplyChangesToStorage();
-                    CreateCheck(sellerId, (decimal)sumAmount);
-                    FillCheckIn();
-                    Printer p = new Printer(_cart);
-                    p.Print();
-                    ClearStorage();
+                    using (TransactionScope scope = new TransactionScope())
+                    {
+                        ApplyChangesToStorage();
+                        CreateCheck(sellerId, (decimal)sumAmount);
+                        FillCheckIn();
+                        Printer p = new Printer(_cart);
+                        p.Print();
+                        ClearStorage();
 
-                    scope.Complete();
-                }       
+                        scope.Complete();
+                    }
+                }
+                catch (TransactionAbortedException ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                catch (ApplicationException ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
-            catch (TransactionAbortedException ex)
+            else
             {
-                MessageBox.Show(ex.ToString());
-            }
-            catch (ApplicationException ex)
-            {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Shopping car is empty");
             }
         }
 
