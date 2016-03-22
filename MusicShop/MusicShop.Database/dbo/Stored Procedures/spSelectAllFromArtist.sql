@@ -1,5 +1,0 @@
-﻿CREATE PROCEDURE spSelectAllFromArtist
-AS
-BEGIN
-	SELECT * FROM tblArtist
-	END
