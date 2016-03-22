@@ -76,3 +76,62 @@ BEGIN
 	WHERE ch.Id = (SELECT TOP 1 ch.Id FROM tblCheck ORDER BY ch.Id DESC);
 END
 GO
+
+CREATE PROCEDURE spUpdateShopStorage
+	@AlbumId INT,
+	@Price DECIMAL (19, 2),
+	@Amount INT
+AS
+BEGIN
+	IF (SELECT ass.Amount
+		FROM tblAlbumsInShopStorage AS ass
+		WHERE ass.AlbumId = @AlbumId AND ass.PriceRealisation = @Price) < @Amount
+		BEGIN
+		THROW 15600, 'Data mismatch. Refresh table', 1;
+		END
+	UPDATE tblAlbumsInShopStorage
+	SET Amount = Amount - @Amount
+	WHERE AlbumId = @AlbumId AND PriceRealisation = @Price;
+END
+GO
+
+CREATE PROCEDURE spClearStorage
+AS
+BEGIN
+	DELETE FROM tblAlbumsInShopStorage
+	WHERE Amount = 0;
+END
+GO
+
+CREATE PROCEDURE spGetUserByLogin
+	@Login NVARCHAR(50),
+	@Password VARCHAR(200)
+AS
+BEGIN
+	SELECT s.Id, s.Name, s.Surname, sa.[Disabled]
+	FROM tblSeller as s
+	INNER JOIN tblSellerAuth as sa ON
+	sa.Id = s.Id
+	WHERE @Login = sa.[Login] AND @Password = sa.[Password] AND sa.[DISABLED] <> 1
+END
+GO
+
+CREATE PROCEDURE spAuthUser
+	@Id INT
+AS
+BEGIN
+	UPDATE tblSellerAuth
+	SET Disabled = 1
+	WHERE @Id = Id
+END
+GO
+
+CREATE PROCEDURE spDeauthUser
+	@Id INT
+AS
+BEGIN
+	UPDATE tblSellerAuth
+	SET Disabled = 0
+	WHERE @Id = Id
+END
+GO

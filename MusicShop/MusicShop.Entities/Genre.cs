@@ -1,5 +1,8 @@
 ﻿namespace MusicShop.Entities
 {
+    /// <summary>
+    /// Represents "tblGenre" table in DB.
+    /// </summary>
     public class Genre
     {
         public Genre() { }

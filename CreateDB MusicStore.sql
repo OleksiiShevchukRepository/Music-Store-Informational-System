@@ -64,7 +64,9 @@ REFERENCES tblMusicShop(Id)
 CREATE TABLE tblSellerAuth
 (
 Id INT NOT NULL IDENTITY (1, 1),
-[Password] NVARCHAR(16) NOT NULL
+[Login] NVARCHAR(50) NOT NULL,
+[Password] VARCHAR(200) NOT NULL,
+[Disabled] BIT NOT NULL
 CONSTRAINT PK_tblSellerAuth_ID PRIMARY KEY (Id)
 CONSTRAINT FK_tblSellerAuth_tblSeller FOREIGN KEY (Id)
 REFERENCES tblSeller(Id)

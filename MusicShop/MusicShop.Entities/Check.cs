@@ -2,6 +2,9 @@
 
 namespace MusicShop.Repositories
 {
+    /// <summary>
+    /// Represents a check template.
+    /// </summary>
     public class Check
     {
         public int Id { get; set; }

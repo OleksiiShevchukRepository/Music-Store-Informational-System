@@ -1,5 +1,8 @@
 ﻿namespace MusicShop.Entities
 {
+    /// <summary>
+    /// Represents DB Table "tblAlbumsInShopStorage"
+    /// </summary>
     public class AlbumsInStorage
     {
         public int AlbumId { get; set; }

@@ -1,5 +1,8 @@
 ﻿namespace MusicShop.Entities
 {
+    /// <summary>
+    /// Represents an item in shopping cart.
+    /// </summary>
     public class CartItem
     {
         public int AlbumId { get; set; }

@@ -52,11 +52,10 @@
             this.buttonprintCheck = new System.Windows.Forms.Button();
             this.labelTotalPriceText = new System.Windows.Forms.Label();
             this.labelPriceTotalValue = new System.Windows.Forms.Label();
-            this.labelArtist = new System.Windows.Forms.Label();
-            this.comboBoxArtist = new System.Windows.Forms.ComboBox();
             this.labeShoppingCart = new System.Windows.Forms.Label();
             this.buttonLogOut = new System.Windows.Forms.Button();
             this.labelSeller = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.sss)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInCart)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +76,7 @@
             this.clnGenre,
             this.clnRating,
             this.clnAmount});
-            this.sss.Location = new System.Drawing.Point(15, 128);
+            this.sss.Location = new System.Drawing.Point(15, 113);
             this.sss.MultiSelect = false;
             this.sss.Name = "sss";
             this.sss.ReadOnly = true;
@@ -152,7 +151,7 @@
             // buttonToCart
             // 
             this.buttonToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonToCart.Location = new System.Drawing.Point(836, 245);
+            this.buttonToCart.Location = new System.Drawing.Point(836, 230);
             this.buttonToCart.Name = "buttonToCart";
             this.buttonToCart.Size = new System.Drawing.Size(60, 39);
             this.buttonToCart.TabIndex = 1;
@@ -163,7 +162,7 @@
             // buttonFromCart
             // 
             this.buttonFromCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonFromCart.Location = new System.Drawing.Point(836, 375);
+            this.buttonFromCart.Location = new System.Drawing.Point(836, 360);
             this.buttonFromCart.Name = "buttonFromCart";
             this.buttonFromCart.Size = new System.Drawing.Size(60, 39);
             this.buttonFromCart.TabIndex = 2;
@@ -184,7 +183,7 @@
             this.clnPriceCart,
             this.clnAmountCart,
             this.clnPriceTotal});
-            this.dataGridViewInCart.Location = new System.Drawing.Point(916, 128);
+            this.dataGridViewInCart.Location = new System.Drawing.Point(916, 113);
             this.dataGridViewInCart.MultiSelect = false;
             this.dataGridViewInCart.Name = "dataGridViewInCart";
             this.dataGridViewInCart.ReadOnly = true;
@@ -236,7 +235,7 @@
             // comboBoxGenre
             // 
             this.comboBoxGenre.FormattingEnabled = true;
-            this.comboBoxGenre.Location = new System.Drawing.Point(311, 93);
+            this.comboBoxGenre.Location = new System.Drawing.Point(93, 78);
             this.comboBoxGenre.Name = "comboBoxGenre";
             this.comboBoxGenre.Size = new System.Drawing.Size(157, 21);
             this.comboBoxGenre.TabIndex = 4;
@@ -245,7 +244,7 @@
             // labelGenre
             // 
             this.labelGenre.AutoSize = true;
-            this.labelGenre.Location = new System.Drawing.Point(233, 96);
+            this.labelGenre.Location = new System.Drawing.Point(15, 81);
             this.labelGenre.Name = "labelGenre";
             this.labelGenre.Size = new System.Drawing.Size(72, 13);
             this.labelGenre.TabIndex = 5;
@@ -254,15 +253,16 @@
             // labelItemsInShop
             // 
             this.labelItemsInShop.AutoSize = true;
-            this.labelItemsInShop.Location = new System.Drawing.Point(378, 64);
+            this.labelItemsInShop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelItemsInShop.Location = new System.Drawing.Point(362, 74);
             this.labelItemsInShop.Name = "labelItemsInShop";
-            this.labelItemsInShop.Size = new System.Drawing.Size(71, 13);
+            this.labelItemsInShop.Size = new System.Drawing.Size(107, 20);
             this.labelItemsInShop.TabIndex = 6;
             this.labelItemsInShop.Text = "Items in Shop";
             // 
             // buttonClearAll
             // 
-            this.buttonClearAll.Location = new System.Drawing.Point(1177, 583);
+            this.buttonClearAll.Location = new System.Drawing.Point(1177, 568);
             this.buttonClearAll.Name = "buttonClearAll";
             this.buttonClearAll.Size = new System.Drawing.Size(75, 23);
             this.buttonClearAll.TabIndex = 8;
@@ -272,7 +272,7 @@
             // 
             // buttonprintCheck
             // 
-            this.buttonprintCheck.Location = new System.Drawing.Point(916, 583);
+            this.buttonprintCheck.Location = new System.Drawing.Point(916, 568);
             this.buttonprintCheck.Name = "buttonprintCheck";
             this.buttonprintCheck.Size = new System.Drawing.Size(236, 23);
             this.buttonprintCheck.TabIndex = 9;
@@ -283,7 +283,7 @@
             // labelTotalPriceText
             // 
             this.labelTotalPriceText.AutoSize = true;
-            this.labelTotalPriceText.Location = new System.Drawing.Point(1192, 536);
+            this.labelTotalPriceText.Location = new System.Drawing.Point(1192, 521);
             this.labelTotalPriceText.Name = "labelTotalPriceText";
             this.labelTotalPriceText.Size = new System.Drawing.Size(60, 13);
             this.labelTotalPriceText.TabIndex = 10;
@@ -293,34 +293,18 @@
             // 
             this.labelPriceTotalValue.AutoSize = true;
             this.labelPriceTotalValue.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.labelPriceTotalValue.Location = new System.Drawing.Point(1192, 558);
+            this.labelPriceTotalValue.Location = new System.Drawing.Point(1192, 543);
             this.labelPriceTotalValue.Name = "labelPriceTotalValue";
             this.labelPriceTotalValue.Size = new System.Drawing.Size(0, 13);
             this.labelPriceTotalValue.TabIndex = 11;
             // 
-            // labelArtist
-            // 
-            this.labelArtist.AutoSize = true;
-            this.labelArtist.Location = new System.Drawing.Point(12, 96);
-            this.labelArtist.Name = "labelArtist";
-            this.labelArtist.Size = new System.Drawing.Size(33, 13);
-            this.labelArtist.TabIndex = 12;
-            this.labelArtist.Text = "Artist:";
-            // 
-            // comboBoxArtist
-            // 
-            this.comboBoxArtist.FormattingEnabled = true;
-            this.comboBoxArtist.Location = new System.Drawing.Point(51, 93);
-            this.comboBoxArtist.Name = "comboBoxArtist";
-            this.comboBoxArtist.Size = new System.Drawing.Size(162, 21);
-            this.comboBoxArtist.TabIndex = 13;
-            // 
             // labeShoppingCart
             // 
             this.labeShoppingCart.AutoSize = true;
-            this.labeShoppingCart.Location = new System.Drawing.Point(1069, 64);
+            this.labeShoppingCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labeShoppingCart.Location = new System.Drawing.Point(1044, 74);
             this.labeShoppingCart.Name = "labeShoppingCart";
-            this.labeShoppingCart.Size = new System.Drawing.Size(74, 13);
+            this.labeShoppingCart.Size = new System.Drawing.Size(111, 20);
             this.labeShoppingCart.TabIndex = 14;
             this.labeShoppingCart.Text = "Shopping Cart";
             // 
@@ -342,16 +326,25 @@
             this.labelSeller.Size = new System.Drawing.Size(0, 13);
             this.labelSeller.TabIndex = 16;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(372, 39);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "H2O LICENCED CD\'s";
+            // 
             // FormItemsInShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.labelSeller);
             this.Controls.Add(this.buttonLogOut);
             this.Controls.Add(this.labeShoppingCart);
-            this.Controls.Add(this.comboBoxArtist);
-            this.Controls.Add(this.labelArtist);
             this.Controls.Add(this.labelPriceTotalValue);
             this.Controls.Add(this.labelTotalPriceText);
             this.Controls.Add(this.buttonprintCheck);
@@ -363,10 +356,12 @@
             this.Controls.Add(this.buttonFromCart);
             this.Controls.Add(this.buttonToCart);
             this.Controls.Add(this.sss);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormItemsInShop";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "H2O Licenced CD\'s Main Window";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormItemsInShop_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.sss)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInCart)).EndInit();
             this.ResumeLayout(false);
@@ -398,10 +393,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clnPriceTotal;
         private System.Windows.Forms.Label labelTotalPriceText;
         private System.Windows.Forms.Label labelPriceTotalValue;
-        private System.Windows.Forms.Label labelArtist;
-        private System.Windows.Forms.ComboBox comboBoxArtist;
         private System.Windows.Forms.Label labeShoppingCart;
         private System.Windows.Forms.Button buttonLogOut;
         private System.Windows.Forms.Label labelSeller;
+        private System.Windows.Forms.Label label2;
     }
 }

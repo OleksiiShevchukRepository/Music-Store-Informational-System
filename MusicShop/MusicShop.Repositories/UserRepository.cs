@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private const string spGetUserByLogin = "spGetUserByLogin";
         private const string spInitUser = "spAuthUser";
@@ -21,6 +21,8 @@ namespace MusicShop.Repositories
         {
             _connectionString = connectionString;
         }
+
+        #region Methods
 
         public User GetUserByLogin(string login, string password)
         {
@@ -86,5 +88,7 @@ namespace MusicShop.Repositories
                 }
             }
         }
+
+        #endregion
     }
 }

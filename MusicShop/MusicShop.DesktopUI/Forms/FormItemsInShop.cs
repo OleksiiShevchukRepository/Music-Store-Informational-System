@@ -56,15 +56,23 @@ namespace MusicShop.DesktopUI
 
         private void buttonLogOut_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void FormItemsInShop_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Logout();
+        }
+
+        private void Logout()
+        {
             UserRepository usr = new UserRepository(ConfigurationManager.ConnectionStrings["MusicStore"].ConnectionString);
             DialogResult res = MessageBox.Show("Are you sure?", "Log Out", MessageBoxButtons.YesNo);
-            
-            if(res == DialogResult.Yes)
+
+            if (res == DialogResult.Yes)
             {
                 usr.DeauthUser(CurrentUser.Id);
-                this.Close();
             }
-
         }
     }
 }

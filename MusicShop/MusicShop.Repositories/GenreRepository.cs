@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace MusicShop.Repositories
 {
-    public class GenreRepository
+    public class GenreRepository : IGenreRepository
     {
         private const string spGetAllGenres = "spSelectAllFromGenre";
 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Entities
 {
+    /// <summary>
+    /// Represents user authification DB Procedures results.
+    /// </summary>
     public class User
     {
         public int Id { get; set; }

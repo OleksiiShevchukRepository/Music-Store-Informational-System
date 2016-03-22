@@ -26,12 +26,19 @@ namespace MusicShop.DesktopUI
             InitializeComponent();
         }
 
+        #region Buttons
+
         private void ToMainForm()
         {
             var frm = new FormItemsInShop();
             frm.FormClosing += delegate { Show(); };
             frm.Show();
             Hide();
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void buttonLogIn_Click(object sender, EventArgs e)
@@ -64,5 +71,7 @@ namespace MusicShop.DesktopUI
                 Close();
             }
         }
+
+        #endregion
     }
 }

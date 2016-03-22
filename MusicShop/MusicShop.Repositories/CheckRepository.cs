@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace MusicShop.Repositories
 {
-    public class CheckRepository
+    public class CheckRepository : ICheckRepository
     {
         private const string spCreateCheck = "spCreateCheck";
         private const string spCreateSoldItem = "spCreateSoldItem";
@@ -96,6 +96,7 @@ namespace MusicShop.Repositories
 
         #endregion
 
+        #region ShopStorage
         public void UpdateShowStorage(int id, decimal price, int amount)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -132,6 +133,8 @@ namespace MusicShop.Repositories
                 }
             }
         }
+
+        #endregion
     }
 }
 

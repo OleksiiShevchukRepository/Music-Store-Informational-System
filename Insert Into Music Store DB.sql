@@ -146,9 +146,9 @@ VALUES (1, 1, N'Ben', N'Gann', N'KC0293293'),
 SET IDENTITY_INSERT tblSeller OFF;
 
 SET IDENTITY_INSERT tblSellerAuth ON;
-INSERT INTO tblSellerAuth(Id, [Password])
-VALUES (1, '12345'),
-		(2, 'QWERTY')
+INSERT INTO tblSellerAuth(Id, [Login], [Password], [Disabled])
+VALUES (1, 'Gann', '827ccb0eea8a706c4c34a16891f84e7b', 0), --Pass: 12345
+		(2, 'Sins', 'd8578edf8458ce06fbc5bb76a58c5ca4', 0); --Pass: qwerty
 SET IDENTITY_INSERT tblSellerAuth OFF;
 
 SET IDENTITY_INSERT tblAlbumsInShopStorage ON
