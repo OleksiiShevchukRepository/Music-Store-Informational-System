@@ -14,7 +14,7 @@ namespace MusicShop.DesktopUI
         {
             InitializeComponent();
 
-            g.ShowAlbumsInStoreNoFilters(sss);
+            g.ShowAlbumsInStoreNoFilters(sss);  //review O.S: use another name of variable "sss"
             g.InsertMusicGenres(comboBoxGenre);
             labelSeller.Text = "Seller:" + CurrentUser.Name + " " + CurrentUser.Surname;
         }
@@ -73,6 +73,7 @@ namespace MusicShop.DesktopUI
             {
                 usr.DeauthUser(CurrentUser.Id);
             }
+             //review O.S: What if user choose "No"? Bug.
         }
     }
 }
