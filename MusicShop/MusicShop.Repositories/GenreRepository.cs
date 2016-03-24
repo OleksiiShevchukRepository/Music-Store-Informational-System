@@ -7,6 +7,7 @@ namespace MusicShop.Repositories
 {
     public class GenreRepository : IGenreRepository
     {
+        // review O.S: use base class for this members
         private const string spGetAllGenres = "spSelectAllFromGenre";
 
         private readonly string _connectionString;
@@ -21,6 +22,7 @@ namespace MusicShop.Repositories
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
+                // review O.S: Missed space
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = connection;
