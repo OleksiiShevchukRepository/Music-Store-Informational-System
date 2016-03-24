@@ -48,7 +48,7 @@ namespace MusicShop.DesktopUI.Code
             if (_cart.Count > 0)
             {
                 for (int i = 0; i < _cart.Count; i++)
-                {
+                {   // review S.O: Separate into two lines
                     if (c.AlbumId == _cart[i].AlbumId && c.PriceItem == _cart[i].PriceItem && c.AmountInShop > _cart[i].Amount)
                     {
                         _cart[i].Amount++;
@@ -63,13 +63,13 @@ namespace MusicShop.DesktopUI.Code
                     }
                 }
             }
-
+             // review S.O: redundant line
 
             if (!isRepeated)
             {
                 _cart.Add(c);
             }
-
+            // review S.O: redundant line
 
             PrintCart(cartGV, totalPrice);
         }
