@@ -8,6 +8,7 @@ namespace MusicShop.Repositories
 {
     public class ShopStorageRepository : IShopStorageRepository
     {
+        // review O.S: use base class for this members
         private const string spGetAllAlbums = "spAlbumsInMusicStore_noFilters";
         private const string spGetAlbumsByGenre = "spAlbumsInMusicStore_Filters";
 
@@ -24,7 +25,7 @@ namespace MusicShop.Repositories
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                connection.Open();
+                connection.Open(); // review O.S: Missed space
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = connection;
