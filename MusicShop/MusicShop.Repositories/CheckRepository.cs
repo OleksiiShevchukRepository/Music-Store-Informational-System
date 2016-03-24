@@ -5,7 +5,8 @@ using System.Data.SqlClient;
 namespace MusicShop.Repositories
 {
     public class CheckRepository : ICheckRepository
-    {
+    { 
+        // review S.O: Its better to define all stored procedures and connection string in base class
         private const string spCreateCheck = "spCreateCheck";
         private const string spCreateSoldItem = "spCreateSoldItem";
         private const string spCheckInfo = "spCheckInfo";
