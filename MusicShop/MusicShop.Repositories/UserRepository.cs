@@ -11,6 +11,7 @@ namespace MusicShop.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        // review O.S: use base class for this members
         private const string spGetUserByLogin = "spGetUserByLogin";
         private const string spInitUser = "spAuthUser";
         private const string spDeauthUser = "spDeauthUser";
