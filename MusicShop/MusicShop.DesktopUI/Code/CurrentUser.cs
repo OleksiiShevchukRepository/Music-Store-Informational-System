@@ -36,7 +36,7 @@ namespace MusicShop.DesktopUI.Code
                 return currentUser.Surname;
             }
         }
-
+         // This might be in separate file or class
         public static string GetMd5Hash(MD5 md5Hash, string input)
         {
 
