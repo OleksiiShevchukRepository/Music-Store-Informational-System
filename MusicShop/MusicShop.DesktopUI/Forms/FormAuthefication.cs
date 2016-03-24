@@ -1,4 +1,5 @@
-﻿using MusicShop.DesktopUI.Code;
+// review S.O: Unused usings not deleted
+using MusicShop.DesktopUI.Code;
 using MusicShop.Entities;
 using MusicShop.Repositories;
 using System;
